@@ -21,9 +21,8 @@ Route::group([
 ], function () {
     Route::get('/', 'AdController@index')->name('ad.index');
     Route::get('/create', 'AdController@create')->name('ad.create')->middleware('auth');
-    Route::get('/{ad}', 'AdController@show')->name('ad.show');
     Route::get('/edit/{ad}', 'AdController@edit')->name('ad.edit')->middleware('auth');
     Route::post('/', 'AdController@store')->name('ad.store')->middleware('auth');
-    Route::put('/', 'AdController@update')->name('ad.update')->middleware('auth');
-    Route::delete('/', 'AdController@destroy')->name('ad.delete')->middleware('auth');
+    Route::post('/update', 'AdController@update')->name('ad.update')->middleware('auth');
+    Route::get('/delete/{ad}', 'AdController@destroy')->name('ad.delete')->middleware('auth');
 });
