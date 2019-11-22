@@ -8,7 +8,6 @@
                 <div class="card-header">Kreiraj Oglas</div>
 
                 <div class="card-body">
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -35,6 +34,18 @@
                         <div class="form-group">
                             <label for="address">Adresa: </label>
                             <input type="text" class="form-control" name="address"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Grad: </label>
+                            <input type="text" class="form-control" name="city"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Kategorija: </label>
+                            <select class="custom-select" name="category">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}"> {{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="image">Slika: </label>

@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('ad.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('ad.update') }}" enctype="multipart/form-data">
                         <div class="form-group">
                             @csrf
                             <label for="name">Naziv : </label>
@@ -35,7 +35,26 @@
                             <label for="address">Adresa : </label>
                             <input type="text" value="{{ $ad->address }}" class="form-control" name="address"/>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Data</button>
+                        <div class="form-group">
+                            <label for="city">Grad : </label>
+                            <input type="text" value="{{ $ad->city }}" class="form-control" name="city"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Kategorija: </label>
+                            <select class="custom-select" name="category">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ isset($ad->$category) && $ad->$category->id == $category->id ? 'selected' : '' }}> {{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Slika: </label>
+                            <input type="file" class="form-control" name="image"/>
+                            <span>
+                                <img src="{{ '/images/' . $ad->image }}" width="50px">
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Izmeni oglas</button>
                     </form>
                 </div>
             </div>

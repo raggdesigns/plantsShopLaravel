@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Ads</div>
+                <div class="card-header">Oglasi</div>
 
                 <div class="card-body">
 
@@ -20,6 +20,7 @@
                             <th>Image</th>
                             <th>Naziv</th>
                             <th>Adresa</th>
+                            <th>Grad</th>
                             <th>Telefon</th>
                             <th>Cena</th>
                             <th>Kategorija</th>
@@ -32,6 +33,7 @@
                                 <td><img src="{{ '/images/' . $ad->image }}" width="50px"></td>
                                 <td>{{ $ad->name }}</td>
                                 <td>{{ $ad->address }}</td>
+                                <td>{{ $ad->city }}</td>
                                 <td>{{ $ad->phone }}</td>
                                 <td>{{ $ad->price }}</td>
                                 <td>{{ isset($ad->category) ? $ad->category->name : '' }}</td>
