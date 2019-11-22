@@ -24,7 +24,9 @@
                             <th>Telefon</th>
                             <th>Cena</th>
                             <th>Kategorija</th>
-                            <th></th>
+                            @if(auth()->check())
+                                <th></th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -37,10 +39,12 @@
                                 <td>{{ $ad->phone }}</td>
                                 <td>{{ $ad->price }}</td>
                                 <td>{{ isset($ad->category) ? $ad->category->name : '' }}</td>
-                                <td>
-                                    <a href="{{ route('ad.edit', [ 'ad' => $ad ]) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
-                                    <a href="{{ route('ad.delete', [ 'ad' => $ad ]) }}" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
-                                </td>
+                                @if(auth()->check())
+                                    <td>
+                                        <a href="{{ route('ad.edit', [ 'ad' => $ad ]) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('ad.delete', [ 'ad' => $ad ]) }}" class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

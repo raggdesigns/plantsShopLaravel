@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', 'AdController@index')->name('ad.index');
+Route::get('/{ad}', 'AdController@show')->name('ad.show');
+
 Route::group([
     'prefix' => 'ad',
 ], function () {
