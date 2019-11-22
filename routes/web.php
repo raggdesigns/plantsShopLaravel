@@ -19,7 +19,6 @@ Route::get('/{ad}', 'AdController@show')->name('ad.show');
 Route::group([
     'prefix' => 'ad',
 ], function () {
-    Route::get('/', 'AdController@index')->name('ad.index');
     Route::get('/create', 'AdController@create')->name('ad.create')->middleware('auth');
     Route::get('/edit/{ad}', 'AdController@edit')->name('ad.edit')->middleware('auth');
     Route::post('/', 'AdController@store')->name('ad.store')->middleware('auth');
