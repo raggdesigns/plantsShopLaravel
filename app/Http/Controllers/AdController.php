@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ad;
+use App\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -28,7 +29,11 @@ class AdController extends Controller
      */
     public function create(Ad $ad)
     {
-        return view('ads.create', ['ad' => $ad]);
+        $categories = Category::all();
+        return view('ads.create', [
+            'ad' => $ad,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -62,9 +67,10 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
-
+        $categories = Category::all();
         return view('ads.edit', [
-            'ad' => $ad
+            'ad' => $ad,
+            'categories' => $categories
         ]);
     }
 
@@ -78,7 +84,7 @@ class AdController extends Controller
     public function update(Request $request, Ad $ad)
     {
         $ad->update($this->preparedData($request));
-        return redirect()->route('ads.edit', ['ad' => $ad]);
+        return redirect()->route('ad.index');
     }
 
     /**
@@ -103,16 +109,16 @@ class AdController extends Controller
         $prepared = [
             'name' => $request->input('name'),
             'address' => $request->input('address'),
+            'city' => $request->input('city'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'category_id' => $request->input('category_id'),
+            'category_id' => $request->input('category'),
             'user_id' => auth()->user()->id,
         ];
 
         if ($file = $request->file('image')) {
             $name = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/images/'; // upload path
-            $file->move($destinationPath, $name);
+            $request->file('image')->storeAs('images',$name);
             $prepared['image'] = $name;
         }
         return $prepared;
