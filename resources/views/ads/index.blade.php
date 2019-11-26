@@ -32,7 +32,7 @@
                         <tbody>
                         @foreach($ads as $ad)
                             <tr>
-                                <td><img src="{{ '/storage/images/' . $ad->image }}" width="50px"></td>
+                                <td><a href="{{ route('ad.show', [ 'ad' => $ad ]) }}"><img src="{{ '/storage/images/' . $ad->image }}" width="50px"></a></td>
                                 <td>{{ $ad->name }}</td>
                                 <td>{{ $ad->address }}</td>
                                 <td>{{ $ad->city }}</td>
