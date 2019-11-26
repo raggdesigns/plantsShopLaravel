@@ -32,7 +32,7 @@
                         <tbody>
                         @foreach($ads as $ad)
                             <tr>
-                                <td><img src="{{ '/images/' . $ad->image }}" width="50px"></td>
+                                <td><img src="{{ '/storage/images/' . $ad->image }}" width="50px"></td>
                                 <td>{{ $ad->name }}</td>
                                 <td>{{ $ad->address }}</td>
                                 <td>{{ $ad->city }}</td>
@@ -48,8 +48,7 @@
                             </tr>
                         @endforeach
                         </tbody>
-                        </table>
-
+                    </table>
                 </div>
             </div>
         </div>

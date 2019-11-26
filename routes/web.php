@@ -22,6 +22,6 @@ Route::group([
     Route::get('/create', 'AdController@create')->name('ad.create')->middleware('auth');
     Route::get('/edit/{ad}', 'AdController@edit')->name('ad.edit')->middleware('auth');
     Route::post('/', 'AdController@store')->name('ad.store')->middleware('auth');
-    Route::post('/update', 'AdController@update')->name('ad.update')->middleware('auth');
+    Route::post('/update/{ad}', 'AdController@update')->name('ad.update')->middleware('auth');
     Route::get('/delete/{ad}', 'AdController@destroy')->name('ad.delete')->middleware('auth');
 });
