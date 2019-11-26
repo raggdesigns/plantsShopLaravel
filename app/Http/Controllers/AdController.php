@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ad;
 use App\Category;
+use App\Http\Requests\AdRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -77,11 +78,11 @@ class AdController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param AdRequest $request
      * @param Ad $ad
      * @return Response
      */
-    public function update(Request $request, Ad $ad)
+    public function update(AdRequest $request, Ad $ad)
     {
         $ad->update($this->preparedData($request));
         return redirect()->route('ad.index');
@@ -112,13 +113,14 @@ class AdController extends Controller
             'city' => $request->input('city'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
+            'phone' => $request->input('phone'),
             'category_id' => $request->input('category'),
             'user_id' => auth()->user()->id,
         ];
 
         if ($file = $request->file('image')) {
             $name = $file->getClientOriginalName();
-            $request->file('image')->storeAs('images',$name);
+            $request->file('image')->storeAs('public/images',$name);
             $prepared['image'] = $name;
         }
         return $prepared;
